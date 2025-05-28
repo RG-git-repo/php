@@ -1,44 +1,181 @@
-<?php
-// Get all headers
-$headers = getallheaders();
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConfigPanel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top banner -->
+    <header>
+        <h1>Config&nbsp;Panel</h1>
+        <div class="user-info" id="userInfo">
+            <span class="avatar">JD</span>
+            <span class="user-name" id="userName">John Doe</span>
+            <!-- Theme switch next to user info -->
+            <label class="theme-switch" title="Toggle dark mode">
+                <input type="checkbox" id="themeToggle" />
+                <span class="slider"></span>
+            </label>
+            <div class="user-dropdown" id="userDropdown">
+                <ul>
+                    <li><a href="#" id="logoutBtn">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
 
-// Print all headers for debugging
-echo '<pre>';
-print_r($headers);
-echo '</pre>';
+    <!-- Container for menu and main content -->
+    <div class="container">
+        <!-- Left menu -->
+        <nav class="menu">
+            <ul>
+                <li class="active"><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#promote">Promote</a></li>
+                <li><a href="#builds">Builds</a></li>
+            </ul>
+        </nav>
 
-// Extract the X-Forwarded-Access-Token header
-$accessToken = $headers['X-Forwarded-Access-Token'] ?? null;
+        <!-- Main window -->
+        <main class="content">
+            <div id="dashboard" class="content-section active">
+                <div class="dashboard-grid">
+                    <div class="grid-header">
+                        <div class="grid-cell">Project</div>
+                        <div class="grid-cell">Status</div>
+                        <div class="grid-cell">Version</div>
+                        <div class="grid-cell">Last Updated</div>
+                        <div class="grid-cell">Actions</div>
+                    </div>
+                    
+                    <div class="grid-row">
+                        <div class="grid-cell">Frontend Portal</div>
+                        <div class="grid-cell"><span class="status active">Active</span></div>
+                        <div class="grid-cell">v2.4.1</div>
+                        <div class="grid-cell">12 May 2024</div>
+                        <div class="grid-cell">
+                            <button class="action-btn edit">Edit</button>
+                            <button class="action-btn view">View</button>
+                        </div>
+                    </div>
+                    
+                    <div class="grid-row">
+                        <div class="grid-cell">Authentication Service</div>
+                        <div class="grid-cell"><span class="status pending">Pending</span></div>
+                        <div class="grid-cell">v1.8.0</div>
+                        <div class="grid-cell">10 May 2024</div>
+                        <div class="grid-cell">
+                            <button class="action-btn edit">Edit</button>
+                            <button class="action-btn view">View</button>
+                        </div>
+                    </div>
+                    
+                    <div class="grid-row">
+                        <div class="grid-cell">API Gateway</div>
+                        <div class="grid-cell"><span class="status active">Active</span></div>
+                        <div class="grid-cell">v3.2.0</div>
+                        <div class="grid-cell">11 May 2024</div>
+                        <div class="grid-cell">
+                            <button class="action-btn edit">Edit</button>
+                            <button class="action-btn view">View</button>
+                        </div>
+                    </div>
+                    
+                    <div class="grid-row">
+                        <div class="grid-cell">Database Service</div>
+                        <div class="grid-cell"><span class="status warning">Warning</span></div>
+                        <div class="grid-cell">v4.0.2</div>
+                        <div class="grid-cell">9 May 2024</div>
+                        <div class="grid-cell">
+                            <button class="action-btn edit">Edit</button>
+                            <button class="action-btn view">View</button>
+                        </div>
+                    </div>
+                    
+                    <div class="grid-row">
+                        <div class="grid-cell">Scheduler</div>
+                        <div class="grid-cell"><span class="status inactive">Inactive</span></div>
+                        <div class="grid-cell">v1.3.8</div>
+                        <div class="grid-cell">5 May 2024</div>
+                        <div class="grid-cell">
+                            <button class="action-btn edit">Edit</button>
+                            <button class="action-btn view">View</button>
+                        </div>
+                    </div>
+                    
+                    <div class="grid-row">
+                        <div class="grid-cell">Analytics Engine</div>
+                        <div class="grid-cell"><span class="status active">Active</span></div>
+                        <div class="grid-cell">v2.1.0</div>
+                        <div class="grid-cell">11 May 2024</div>
+                        <div class="grid-cell">
+                            <button class="action-btn edit">Edit</button>
+                            <button class="action-btn view">View</button>
+                        </div>
+                    </div>
+                    
+                    <div class="grid-row">
+                        <div class="grid-cell">Notification Service</div>
+                        <div class="grid-cell"><span class="status pending">Pending</span></div>
+                        <div class="grid-cell">v1.5.2</div>
+                        <div class="grid-cell">8 May 2024</div>
+                        <div class="grid-cell">
+                            <button class="action-btn edit">Edit</button>
+                            <button class="action-btn view">View</button>
+                        </div>
+                    </div>
+                    
+                    <div class="grid-row">
+                        <div class="grid-cell">Cache Manager</div>
+                        <div class="grid-cell"><span class="status active">Active</span></div>
+                        <div class="grid-cell">v2.2.1</div>
+                        <div class="grid-cell">10 May 2024</div>
+                        <div class="grid-cell">
+                            <button class="action-btn edit">Edit</button>
+                            <button class="action-btn view">View</button>
+                        </div>
+                    </div>
+                    
+                    <div class="grid-row">
+                        <div class="grid-cell">Logger Service</div>
+                        <div class="grid-cell"><span class="status error">Error</span></div>
+                        <div class="grid-cell">v1.0.7</div>
+                        <div class="grid-cell">7 May 2024</div>
+                        <div class="grid-cell">
+                            <button class="action-btn edit">Edit</button>
+                            <button class="action-btn view">View</button>
+                        </div>
+                    </div>
+                    
+                    <div class="grid-row">
+                        <div class="grid-cell">Storage Service</div>
+                        <div class="grid-cell"><span class="status active">Active</span></div>
+                        <div class="grid-cell">v3.5.3</div>
+                        <div class="grid-cell">12 May 2024</div>
+                        <div class="grid-cell">
+                            <button class="action-btn edit">Edit</button>
+                            <button class="action-btn view">View</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="promote" class="content-section">
+                <p>Promotion content goes here.</p>
+            </div>
+            <div id="builds" class="content-section">
+                <p>Builds content goes here.</p>
+            </div>
+        </main>
+    </div>
 
-if ($accessToken) {
-    // Prepare the OpenShift API URL
-    $url = "https://api.okd4.vector-api.com:6443/apis/user.openshift.io/v1/users/~";
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Created: May 2025</p>
+    </footer>
 
-    // Initialize cURL
-    $ch = curl_init($url);
-
-    // Set cURL options
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        "Authorization: Bearer $accessToken"
-    ]);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // -k equivalent
-    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false); // Also disable host verification
-
-    // Execute the cURL request
-    $response = curl_exec($ch);
-
-    // Check for errors
-    if (curl_errno($ch)) {
-        echo 'Curl error: ' . curl_error($ch);
-    } else {
-        echo "OpenShift API Response:\n";
-        echo $response;
-    }
-
-    // Close cURL session
-    curl_close($ch);
-} else {
-    echo "X-Forwarded-Access-Token header not found.";
-}
-?>
+    <script src="scripts.js"></script>
+</body>
+</html>
