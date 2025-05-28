@@ -1,3 +1,14 @@
+<?php
+// Get all headers
+$headers = getallheaders();
+
+// Get the username from X-Forwarded-User header
+$username = $headers['X-Forwarded-User'] ?? 'Unknown User';
+
+// Get initials for avatar
+$initials = preg_replace('/[^A-Z]/', '', ucwords($username));
+$initials = substr($initials, 0, 2);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,8 +23,8 @@
     <header>
         <h1>Config&nbsp;Panel</h1>
         <div class="user-info" id="userInfo">
-            <span class="avatar">JD</span>
-            <span class="user-name" id="userName">John Doe</span>
+            <span class="avatar" id="userInitials"><?php echo htmlspecialchars($initials); ?></span>
+            <span class="user-name" id="userName"><?php echo htmlspecialchars($username); ?></span>
             <!-- Theme switch next to user info -->
             <label class="theme-switch" title="Toggle dark mode">
                 <input type="checkbox" id="themeToggle" />
@@ -177,5 +188,38 @@
     </footer>
 
     <script src="scripts.js"></script>
+    <script>
+        // Fetch user information
+        fetch('style.css')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('userName').textContent = data.username;
+                document.getElementById('userInitials').textContent = data.initials;
+            })
+            .catch(error => console.error('Error fetching user info:', error));
+
+        // Menu functionality
+        const menuItems = document.querySelectorAll('.menu a');
+        const contentSections = document.querySelectorAll('.content-section');
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                // Remove active class from all menu items
+                menuItems.forEach(i => i.parentElement.classList.remove('active'));
+
+                // Add active class to the clicked menu item
+                this.parentElement.classList.add('active');
+
+                // Hide all content sections
+                contentSections.forEach(section => section.classList.remove('active'));
+
+                // Show the clicked content section
+                const target = this.getAttribute('href');
+                document.querySelector(target).classList.add('active');
+            });
+        });
+    </script>
 </body>
 </html>
