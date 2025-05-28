@@ -44,8 +44,9 @@ $initials = substr($initials, 0, 2);
         <nav class="menu">
             <ul>
                 <li class="active"><a href="#dashboard">Dashboard</a></li>
-                <li><a href="#promote">Promote</a></li>
+                <li><a href="#releases">Releases</a></li>
                 <li><a href="#builds">Builds</a></li>
+                <li><a href="#logs">Logs</a></li>
             </ul>
         </nav>
 
@@ -173,11 +174,14 @@ $initials = substr($initials, 0, 2);
                 </div>
             </div>
             
-            <div id="promote" class="content-section">
-                <p>Promotion content goes here.</p>
+            <div id="releases" class="content-section">
+                <p>Releases content goes here.</p>
             </div>
             <div id="builds" class="content-section">
                 <p>Builds content goes here.</p>
+            </div>
+            <div id="logs" class="content-section">
+                <p>Logs content goes here.</p>
             </div>
         </main>
     </div>
